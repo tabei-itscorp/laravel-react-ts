@@ -1,0 +1,60 @@
+※例としてbookテーブルを作成するものとします。テーブル名や列名やデータはすべて例です。
+
+1. テーブルを作成
+  > docker-compose exec app php artisan make:migration create_books_table
+
+2. database/migration に作成された books のマイグレーションファイルの up 関数を以下のように書き換え
+
+  public function up() {
+    Schema::create('books', function (Blueprint $table) {
+      $table->bigIncrements('id');
+      $table->string('isbn');
+      $table->string('title');
+      $table->integer('price');
+      $table->string('publisher');
+      $table->date('published');
+      $table->timestamps();
+    });
+  }
+
+3. マイグレート
+  > docker-compose exec app php artisan migrate
+  または
+  > make migrate
+
+4. モデル作成
+  > docker-compose exec app php artisan make:model Book
+
+5. シーダー作成
+  > docker-compose exec app php artisan make:seeder BooksTableSeeder
+
+6. database/seeds に作成された BooksTableSeeder.php の run 関数を以下のように書き換え
+
+  public function run() {
+    DB::insert("INSERT INTO books (isbn, title, price, publisher, published) VALUES ('978-4-8222-5399-8',N'Visual C# 2019超入門',2000,N'日経BP','2019-08-22')");
+    DB::insert("INSERT INTO books (isbn, title, price, publisher, published) VALUES ('978-4-7980-5759-0',N'はじめてのAndroidアプリ開発',3200,N'秀和システム','2019-08-10')");
+    DB::insert("INSERT INTO books (isbn, title, price, publisher, published) VALUES ('978-4-7981-5112-0',N'独習Java 新版',2980,N'翔泳社','2019-05-15')");
+    DB::insert("INSERT INTO books (isbn, title, price, publisher, published) VALUES ('978-4-7741-9763-0',N'3ステップでしっかり学ぶ Python',2480,N'技術評論社','2018-05-24')");
+    DB::insert("INSERT INTO books (isbn, title, price, publisher, published) VALUES ('978-4-7741-9617-6',N'Swiftポケットリファレンス',2880,N'技術評論社','2018-03-09')");
+    DB::insert("INSERT INTO books (isbn, title, price, publisher, published) VALUES ('978-4-7981-5382-7',N'独習C# 新版',3600,N'翔泳社','2017-12-15')");
+    DB::insert("INSERT INTO books (isbn, title, price, publisher, published) VALUES ('978-4-295-00409-7',N'これから学ぶJavaScript',2400,N'インプレス','2018-07-20')");
+    DB::insert("INSERT INTO books (isbn, title, price, publisher, published) VALUES ('978-4-295-00638-1',N'これから学ぶHTML/CSS',2400,N'インプレス','2019-06-21')");
+    DB::insert("INSERT INTO books (isbn, title, price, publisher, published) VALUES ('978-4-7981-5757-3',N'JavaScript逆引きレシピ',2800,N'翔泳社','2018-10-15')");
+  }
+
+7. database/seeds の DatabaseSeeder.php の run 関数の中身を以下のように追加
+
+  public function run() {
+    $this->call(BooksTableSeeder::class);
+  }
+
+8. シード
+  > docker-compose exec app php artisan db:seed
+  または
+  > make seed
+
+＜補足＞
+一度でも上記を実施したら、新規でテーブルを追加したいときは 1,2,4,6,7 を行ってから以下を実行する。
+> docker-compose exec app php artisan migrate:fresh --seed
+または
+> make fresh

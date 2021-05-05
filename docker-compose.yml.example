@@ -1,0 +1,46 @@
+version: "3.8"
+
+volumes:
+  php-fpm-socket:
+  db-store:
+
+services:
+  app:
+    image: laravel-react-app
+    container_name: laravel-react-app
+    build:
+      context: .
+      dockerfile: ./infra/docker/php/Dockerfile
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - ./backend:/work/backend
+    environment:
+      - DB_CONNECTION=sqlsrv
+      - DB_HOST=mssql
+      - DB_PORT=1433
+      - DB_DATABASE=laravel_react
+      - DB_USERNAME=sa
+      - DB_PASSWORD=
+    networks:
+      - app-net
+      - db-net
+
+  web:
+    image: laravel-react-web
+    container_name: laravel-react-web
+    build:
+      context: .
+      dockerfile: ./infra/docker/nginx/Dockerfile
+    ports:
+      - 8088:80
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - ./backend:/work/backend
+    networks:
+      - app-net
+      - db-net
+
+networks:
+  app-net:
+  db-net:
+    external: true

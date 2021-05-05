@@ -1,0 +1,9 @@
+.next
+node_modules
+/public
+/src/**/*.md
+package-lock.json
+package.json
+README.md
+tsconfig.eslint.json
+tsconfig.json

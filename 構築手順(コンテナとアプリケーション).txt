@@ -1,0 +1,94 @@
+コンテナとアプリケーションを一から構築するための手順です。
+※各種名称やパスワード、ポート番号等はそれぞれの環境に合わせて適宜書き換えてください。
+※各種コマンドはこのファイルと同じ laravel-react フォルダにて実行してください。
+
+1. Azure Data Studio を起動
+  ＜接続情報＞
+  ・Server: localhost,{dbのポート番号}
+  ・Authentication type: SQL Login
+  ・User name: sa
+  ・Password: {dbのSAパスワード}
+
+2. Azure Data Studio でデータベースとユーザーを作成
+  ・Ctrl+Nでクエリーウィンドウを表示
+  ・以下のSQLを入力し、[Run]をクリックしてDBとユーザーを作成
+     CREATE DATABASE {データベース名};
+     CREATE LOGIN {ユーザー名} WITH PASSWORD={ユーザーパスワード}, DEFAULT_DATABASE={データベース名};
+
+3. docker-compose.yml を作成
+  docker-compose.yml.example をコピーしたファイルを作成し、
+  コピーしたファイルの名前を docker-compose.yml に変更
+
+4. docker-compose.yml を修正
+  ※そのまま使用する場合は{dbのSAパスワード}のみ修正してください。
+  ・サービス名（appとweb）
+    services:
+      {サービス名}:
+  ・イメージ名（appとweb）
+    services:
+      {サービス名}:
+        image: {イメージ名}
+  ・コンテナ名（appとweb）
+    services:
+      {サービス名}:
+        container_name: {コンテナ名}
+  ・ポート番号（webのみ）
+    services:
+      {サービス名}:
+        ports:
+          - {ポート番号}:80
+  ・ネットワーク名（appとweb）
+    services:
+      {サービス名}:
+        networks:
+          - {ネットワーク名}
+    networks:
+      {ネットワーク名}
+  ・各種データベース接続情報（appのみ）
+    services:
+      {サービス名}:
+        environment:
+          - DB_CONNECTION=sqlsrv
+          - DB_HOST={dbのサービス名}
+          - DB_PORT={dbのポート番号}
+          - DB_DATABASE={データベース名}
+          - DB_USERNAME=sa
+          - DB_PASSWORD={dbのSAパスワード}
+
+5. コンテナを構築
+  > make build
+
+6. コンテナを起動
+  > make up
+
+7. Laravel をインストール
+  > make create-project
+
+8. .env のデータベース情報を次のとおり書き換え
+
+  DB_CONNECTION={dbのサービス名}
+  DB_HOST=127.0.0.1
+  DB_PORT={dbのポート番号}
+  DB_DATABASE={データベース名}
+  DB_USERNAME={ユーザー名}
+  DB_PASSWORD={ユーザーパスワード}
+
+9. React などをインストール
+  > make install-react
+
+10. .backend 以下のファイルと backend 以下にコピー
+  > cp -r .backend/. backend
+
+11. dump-autoload を実行
+  > make dump-autoload
+
+12. データを登録
+  > make fresh
+
+＜アプリケーションの実行方法＞
+次のコマンドを実行し、
+  > make npm-watch
+コンパイルが完了したらブラウザにて以下のアドレスを入力
+  http://localhost:8088
+  または
+  http://127.0.0.1:8088
