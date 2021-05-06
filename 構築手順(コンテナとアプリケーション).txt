@@ -2,24 +2,28 @@
 ※各種名称やパスワード、ポート番号等はそれぞれの環境に合わせて適宜書き換えてください。
 ※各種コマンドはこのファイルと同じ laravel-react フォルダにて実行してください。
 
-1. Azure Data Studio を起動
+1. init.sql を作成
+  ルートディレクトリに init.sql を作成し、以下のSQLを書き込み
+
+  CREATE DATABASE {データベース名};
+  CREATE LOGIN {ユーザー名} WITH PASSWORD='{ユーザーパスワード}', DEFAULT_DATABASE={データベース名};
+
+2. Azure Data Studio を起動
   ＜接続情報＞
   ・Server: localhost,{dbのポート番号}
   ・Authentication type: SQL Login
   ・User name: sa
   ・Password: {dbのSAパスワード}
 
-2. Azure Data Studio でデータベースとユーザーを作成
+3. Azure Data Studio でデータベースとユーザーを作成
   ・Ctrl+Nでクエリーウィンドウを表示
-  ・以下のSQLを入力し、[Run]をクリックしてDBとユーザーを作成
-     CREATE DATABASE {データベース名};
-     CREATE LOGIN {ユーザー名} WITH PASSWORD={ユーザーパスワード}, DEFAULT_DATABASE={データベース名};
+  ・init.sql に書き込んだSQLを入力し、[Run]をクリックしてDBとユーザーを作成
 
-3. docker-compose.yml を作成
+4. docker-compose.yml を作成
   docker-compose.yml.example をコピーしたファイルを作成し、
   コピーしたファイルの名前を docker-compose.yml に変更
 
-4. docker-compose.yml を修正
+5. docker-compose.yml を修正
   ※そのまま使用する場合は{dbのSAパスワード}のみ修正してください。
   ・サービス名（appとweb）
     services:
@@ -55,16 +59,16 @@
           - DB_USERNAME=sa
           - DB_PASSWORD={dbのSAパスワード}
 
-5. コンテナを構築
+6. コンテナを構築
   > make build
 
-6. コンテナを起動
+7. コンテナを起動
   > make up
 
-7. Laravel をインストール
+8. Laravel をインストール
   > make create-project
 
-8. .env のデータベース情報を次のとおり書き換え
+9. .env のデータベース情報を次のとおり書き換え
 
   DB_CONNECTION={dbのサービス名}
   DB_HOST=127.0.0.1
@@ -73,16 +77,16 @@
   DB_USERNAME={ユーザー名}
   DB_PASSWORD={ユーザーパスワード}
 
-9. React などをインストール
+10. React などをインストール
   > make install-react
 
-10. .backend 以下のファイルと backend 以下にコピー
+11. .backend 以下のファイルと backend 以下にコピー
   > cp -r .backend/. backend
 
-11. dump-autoload を実行
+12. dump-autoload を実行
   > make dump-autoload
 
-12. データを登録
+13. データを登録
   > make fresh
 
 ＜アプリケーションの実行方法＞
