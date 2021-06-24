@@ -30,7 +30,7 @@ install-react:
 	@make npm-install
 	@make npm-dev
 	docker-compose exec web npm i -D react-router-dom
-# docker-compose exec web npm i -D typescript @types/node @types/react @types/react-dom @types/react-router-dom @types/react-helmet @types/webpack-env @typescript-eslint/eslint-plugin @typescript-eslint/parser
+	docker-compose exec web npm i -D typescript @types/node @types/react @types/react-dom @types/react-router-dom @types/react-helmet @types/webpack-env @typescript-eslint/eslint-plugin @typescript-eslint/parser
 	docker-compose exec web npm i -D prettier
 	docker-compose exec web npm i -D eslint eslint-plugin-react eslint-plugin-react-hooks eslint-config-prettier
 init:
