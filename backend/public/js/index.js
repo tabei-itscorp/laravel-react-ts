@@ -34702,6 +34702,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _basic_About__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./basic/About */ "./resources/ts/components/basic/About.tsx");
 /* harmony import */ var _basic_User__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./basic/User */ "./resources/ts/components/basic/User.tsx");
 /* harmony import */ var _basic_UserDetail__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./basic/UserDetail */ "./resources/ts/components/basic/UserDetail.tsx");
+/* harmony import */ var _beginners_NavBar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./beginners/NavBar */ "./resources/ts/components/beginners/NavBar.tsx");
+/* harmony import */ var _beginners_BackLink__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./beginners/BackLink */ "./resources/ts/components/beginners/BackLink.tsx");
+/* harmony import */ var _beginners_Top__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./beginners/Top */ "./resources/ts/components/beginners/Top.tsx");
+/* harmony import */ var _beginners_Sub__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./beginners/Sub */ "./resources/ts/components/beginners/Sub.tsx");
+/* harmony import */ var _beginners_Hooks__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./beginners/Hooks */ "./resources/ts/components/beginners/Hooks.js");
+/* harmony import */ var _beginners_Hooks__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_beginners_Hooks__WEBPACK_IMPORTED_MODULE_16__);
 
 
 
@@ -34715,11 +34721,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// import BeginnersNavBar from './beginners/NavBar';
-// import BeginnersBackLink from './beginners/BackLink';
-// import BeginnersTop from './beginners/Top';
-// import BeginnersSub from './beginners/Sub';
-// import BeginnersHooks from './beginners/Hooks';
+
+
+
+
+
 // import BeginnersMemo from './beginners/Memo';
 // import BeginnersMemo2 from './beginners/Memo2';
 // import BeginnersUseCallback from './beginners/UseCallback';
@@ -34742,6 +34748,7 @@ const App = () => {
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null,
             react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { path: "/", exact: true, component: _NavBar__WEBPACK_IMPORTED_MODULE_3__["default"] }),
             react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { path: "/basic", component: _basic_NavBar__WEBPACK_IMPORTED_MODULE_6__["default"] }),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { path: "/beginners", component: _beginners_NavBar__WEBPACK_IMPORTED_MODULE_12__["default"] }),
             react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { component: _NavBar__WEBPACK_IMPORTED_MODULE_3__["default"] })),
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null),
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null,
@@ -34750,11 +34757,15 @@ const App = () => {
             react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { path: "/basic/about", component: _basic_About__WEBPACK_IMPORTED_MODULE_9__["default"] }),
             react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { path: "/basic/user", exact: true, component: _basic_User__WEBPACK_IMPORTED_MODULE_10__["default"] }),
             react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { path: "/basic/user/:id", component: _basic_UserDetail__WEBPACK_IMPORTED_MODULE_11__["default"] }),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { path: "/beginners", exact: true, component: _beginners_Top__WEBPACK_IMPORTED_MODULE_14__["default"] }),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { path: "/beginners/sub", component: _beginners_Sub__WEBPACK_IMPORTED_MODULE_15__["default"] }),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { path: "/beginners/hooks", exact: true, component: _beginners_Hooks__WEBPACK_IMPORTED_MODULE_16___default.a }),
             react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { component: _NotFound__WEBPACK_IMPORTED_MODULE_5__["default"] })),
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null),
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null,
             react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { path: "/", component: _BackLink__WEBPACK_IMPORTED_MODULE_4__["default"], exact: true }),
             react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { path: "/basic", component: _basic_BackLink__WEBPACK_IMPORTED_MODULE_7__["default"] }),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { path: "/beginners", component: _beginners_BackLink__WEBPACK_IMPORTED_MODULE_13__["default"] }),
             react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { component: _BackLink__WEBPACK_IMPORTED_MODULE_4__["default"] }))));
 };
 const appElement = document.getElementById('app');
@@ -35010,7 +35021,6 @@ const UserDetail = (props) => {
     }, []);
     const getUser = () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(`/api/user/${props.match.params.id}`);
-        // console.log(`user.name: ${response.data.user.name}`);
         setUser(response.data.user);
     });
     return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null,
@@ -35020,6 +35030,162 @@ const UserDetail = (props) => {
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, user === null || user === void 0 ? void 0 : user.email)));
 };
 /* harmony default export */ __webpack_exports__["default"] = (UserDetail);
+
+
+/***/ }),
+
+/***/ "./resources/ts/components/beginners/BackLink.tsx":
+/*!********************************************************!*\
+  !*** ./resources/ts/components/beginners/BackLink.tsx ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+const BackLink = () => {
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], { to: "/beginners" }, "Back to Beginners Category Top"),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], { to: '/' }, "Back to Top")));
+};
+/* harmony default export */ __webpack_exports__["default"] = (BackLink);
+
+
+/***/ }),
+
+/***/ "./resources/ts/components/beginners/Hooks.js":
+/*!****************************************************!*\
+  !*** ./resources/ts/components/beginners/Hooks.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/work/backend/resources/ts/components/beginners/Hooks.js'");
+
+/***/ }),
+
+/***/ "./resources/ts/components/beginners/NavBar.tsx":
+/*!******************************************************!*\
+  !*** ./resources/ts/components/beginners/NavBar.tsx ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+const NavBar = () => {
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null,
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", { className: "nav" },
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], { to: "/beginners/sub" },
+                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", { className: "ml-2" }, "Sub")),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], { to: "/beginners/hooks" },
+                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", { className: "ml-2" }, "Hooks")),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], { to: "/beginners/memo" },
+                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", { className: "ml-2" }, "Memo")),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], { to: "/beginners/memo2" },
+                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", { className: "ml-2" }, "Memo2")),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], { to: "/beginners/useCallback" },
+                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", { className: "ml-2" }, "UseCallback")),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], { to: "/beginners/useMemo" },
+                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", { className: "ml-2" }, "UseMemo")),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], { to: "/beginners/useMemo2" },
+                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", { className: "ml-2" }, "UseMemo2")))));
+};
+/* harmony default export */ __webpack_exports__["default"] = (NavBar);
+
+
+/***/ }),
+
+/***/ "./resources/ts/components/beginners/Sub.tsx":
+/*!***************************************************!*\
+  !*** ./resources/ts/components/beginners/Sub.tsx ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const Hello = ({ firstName, lastName }) => {
+    const url = 'https://reactjs.org/';
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null,
+            "Hello ",
+            firstName,
+            " ",
+            lastName,
+            "!!"),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", { href: url }, "React")));
+};
+const JsFramework = ({ isReact }) => {
+    if (isReact) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "React");
+    }
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Vue.js");
+};
+const Books = () => {
+    const books = [
+        { id: 1, title: 'React.js&Next.js超入門' },
+        { id: 2, title: 'React開発 現場の教科書' },
+        { id: 3, title: 'Reactビギナーズガイド' },
+    ];
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, books.map(book => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", { key: book.id }, book.title))));
+};
+const ConsoleInfo = () => {
+    const handleClick = () => {
+        return () => console.info('button clicked');
+    };
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", { onClick: handleClick() }, "click"));
+};
+const Sub = () => {
+    const name = {
+        firstName: 'Kanako',
+        lastName: 'Monota',
+    };
+    const isReact = true;
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null,
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Hello, Object.assign({}, name)),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(JsFramework, { isReact: isReact }),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Books, null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ConsoleInfo, null)));
+};
+/* harmony default export */ __webpack_exports__["default"] = (Sub);
+
+
+/***/ }),
+
+/***/ "./resources/ts/components/beginners/Top.tsx":
+/*!***************************************************!*\
+  !*** ./resources/ts/components/beginners/Top.tsx ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const Top = () => {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Beginners\u30C8\u30C3\u30D7\u30DA\u30FC\u30B8");
+};
+/* harmony default export */ __webpack_exports__["default"] = (Top);
 
 
 /***/ }),

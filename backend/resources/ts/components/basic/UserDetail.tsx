@@ -15,7 +15,6 @@ const UserDetail: React.FC<UserProps> = (props) => {
 
   const getUser = async () => {
     const response = await axios.get(`/api/user/${props.match.params.id}`);
-    // console.log(`user.name: ${response.data.user.name}`);
     setUser(response.data.user);
   };
 
