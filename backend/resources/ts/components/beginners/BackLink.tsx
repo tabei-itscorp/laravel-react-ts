@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const BackLink: React.FC = () => {
+const BackLink = () => {
   return (
     <div>
       <Link to="/beginners">Back to Beginners Category Top</Link>

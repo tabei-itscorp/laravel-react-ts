@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Top: React.FC = () => {
+const Top = () => {
   return <h1>Beginnersトップページ</h1>
 };
 export default Top;

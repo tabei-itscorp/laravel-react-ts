@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const BackLink = () => {
   return (
     <div>
-      <Link to="/basic">Back to Basic Category Top</Link>
+      <Link to="/fastLearn">Back to Fast Learn Category Top</Link>
       <br/>
       <Link to='/'>Back to Top</Link>
     </div>

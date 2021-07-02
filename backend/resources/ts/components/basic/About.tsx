@@ -1,6 +1,6 @@
 import React from 'react';
 
-const About: React.FC = () => {
+const About = () => {
   return <h1>Aboutページ</h1>;
 }
 export default About;

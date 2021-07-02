@@ -10,7 +10,7 @@ type IsReact = {
   isReact: boolean
 }
 
-const Hello: React.FC<Name> = ({ firstName, lastName }) => {
+const Hello = ({ firstName, lastName }: Name) => {
   const url = 'https://reactjs.org/';
   return (
     <div>
@@ -21,14 +21,14 @@ const Hello: React.FC<Name> = ({ firstName, lastName }) => {
   )
 };
 
-const JsFramework: React.FC<IsReact> = ({ isReact }) => {
+const JsFramework = ({ isReact }: IsReact) => {
   if (isReact) {
     return <p>React</p>;
   }
   return <p>Vue.js</p>;
 };
 
-const Books: React.FC = () => {
+const Books = () => {
   const books = [
     { id: 1, title: 'React.js&Next.js超入門'},
     { id: 2, title: 'React開発 現場の教科書'},
@@ -43,7 +43,7 @@ const Books: React.FC = () => {
   )
 };
 
-const ConsoleInfo: React.FC = () => {
+const ConsoleInfo = () => {
   const handleClick = () => {
     return () => console.info('button clicked');
   };

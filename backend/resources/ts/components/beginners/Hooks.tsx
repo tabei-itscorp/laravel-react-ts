@@ -1,6 +1,6 @@
 import React, { ContextType, useEffect } from 'react';
 
-const Count: React.FC = () => {
+const Count = () => {
   const [count, setCount] = React.useState(0);
   const [count2, setCount2] = React.useState(0);
   const [count3, setCount3] = React.useState(0);
@@ -23,8 +23,8 @@ const Count: React.FC = () => {
   );
 };
 
-const CountDown: React.FC = () => {
-  const [visible, setVisible] = React.useState(true);
+const CountDown = () => {
+  const [visible, setVisible] = React.useState<boolean>(true);
   const LIMIT = 60;
 
   const Timer = () => {
@@ -65,12 +65,12 @@ const CountDown: React.FC = () => {
   );
 };
 
-const UseMemo: React.FC = () => {
+const UseMemo = () => {
   const [count1, setCount1] = React.useState<number>(0);
   const [count2, setCount2] = React.useState<number>(0);
 
   // 無駄に時間がかかる処理
-  const double = (count: number) => {
+  const double = (count: number): number => {
     let i = 0;
     while (i < 1000000000) {
       i++;
@@ -97,20 +97,20 @@ const UseMemo: React.FC = () => {
   );
 };
 
-const UseCallback: React.FC = () => {
+const UseCallback = () => {
   const [count1, setCount1] = React.useState(0);
   const [count2, setCount2] = React.useState(0);
 
   type ButtonProps = {
     id: string,
-    onClick: (event: React.MouseEvent<HTMLInputElement>) => void
+    handleOnClick: (event: React.MouseEvent<HTMLElement>) => void
   }
 
-  const Button = React.memo(function button({ id, onClick }) {
+  const Button = React.memo(function button({ id, handleOnClick }: ButtonProps) {
     React.useEffect(() => {
       console.log(`render ${id}`);
     });
-    return <button onClick={onClick}>{id}</button>
+    return <button onClick={handleOnClick}>{id}</button>
   });
 
   const increment1 = React.useCallback(() => {
@@ -124,68 +124,67 @@ const UseCallback: React.FC = () => {
   return (
     <div>
       <p>{count1}</p>
-      <Button id={'increment1'} onClick={increment1} />
+      <Button id={'increment1'} handleOnClick={increment1} />
       <p>{count2}</p>
-      <Button id={'increment2'} onClick={increment2} />
+      <Button id={'increment2'} handleOnClick={increment2} />
     </div>
   );
 };
 
 type Value = {
   name: string,
-  handleClick: (event: React.MouseEvent<HTMLInputElement>) => void
+  handleOnClick: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const MyContext = React.createContext('');
+const [count, setCount] = React.useState(0);
 
-const UseContext: React.FC = () => {
-  const [count, setCount] = React.useState(0);
+const val: Value = {
+  name: 'soarflat',
+  handleOnClick: () => setCount(count => count + 1),
+};
 
-  const value: Value = {
-    name: 'soarflat',
-    handleClick: () => setCount(count => count + 1),
-  };
+const MyContext = React.createContext(val);
 
+const UseContext = () => {
   return (
     <div>
       <p>count: {count}</p>
-      {/* <MyContext.Provider value={value}>
+      <MyContext.Provider value={val}>
         <ChildComponent />
-      </MyContext.Provider> */}
+      </MyContext.Provider>
     </div>
   )
 };
 
-const ChildComponent: React.FC = () => {
+const ChildComponent = () => {
   return <GrandChildComponent />
 };
 
-const GrandChildComponent: React.FC = () => {
+const GrandChildComponent = (): JSX.Element => {
   const context = React.useContext(MyContext);
   return (
     <div>
-      {/* <p>{context.name}</p>
-      <button onClick={context.handleClick}>increment</button> */}
+      <p>{context.name}</p>
+      <button onClick={context.handleOnClick}>increment</button>
     </div>
   );
 };
 
-const UseRef: React.FC = () => {
-  const inputEl = React.useRef(null);
-  const onButtonClick = () => {
-    if (!inputEl.current) return;
+const UseRef = () => {
+  const inputEl = React.useRef<HTMLInputElement>(null!);
+  const handleOnClick = () => {
     inputEl.current.focus();
   };
 
   return (
     <div>
       <input ref={inputEl} type="text" />
-      <button onClick={onButtonClick}>input要素にフォーカス移動</button>
+      <button onClick={handleOnClick}>input要素にフォーカス移動</button>
     </div>
   );
 };
 
-const UseRef2: React.FC = () => {
+const UseRef2 = () => {
   const [count, setCount] = React.useState(0);
   const prevCountRef = React.useRef(0);
 
@@ -204,7 +203,7 @@ const UseRef2: React.FC = () => {
 /**
  * カスタムフック
  */
-const useCounter = (initialCounter) => {
+const useCounter = (initialCounter: number) => {
   const [count, setCount] = React.useState(initialCounter);
   const increment = () => {
     setCount(count + 1);
@@ -233,7 +232,7 @@ const UseCustomHook: React.FC = () => {
   );
 };
 
-const Hooks: React.FC = () => {
+const Hooks = () => {
   return (
     <>
       <Count />

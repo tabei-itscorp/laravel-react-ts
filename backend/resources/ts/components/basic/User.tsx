@@ -11,7 +11,7 @@ export type UserType = {
   password: string
 };
 
-const User: React.FC = () => {
+const User = () => {
 
   const [users, setUsers] = useState<UserType[]>([]);
 

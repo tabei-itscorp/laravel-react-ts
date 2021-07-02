@@ -5,11 +5,11 @@ const NavBar = () => {
   return (
     <nav>
       <ul className="nav">
-        <Link to="/basic/about">
-          <li className="ml-2">About</li>
+        <Link to="/fastLearn/hello">
+          <li className="ml-2">Hello</li>
         </Link>
-        <Link to="/basic/user">
-          <li className="ml-2">User</li>
+        <Link to="/fastLearn/bookList">
+          <li className="ml-2">BookList</li>
         </Link>
       </ul>
     </nav>

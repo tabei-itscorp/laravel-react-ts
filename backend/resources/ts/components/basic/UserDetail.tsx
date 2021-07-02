@@ -5,7 +5,7 @@ import { UserType } from './User';
 
 type UserProps = RouteComponentProps<{id: string}>;
 
-const UserDetail: React.FC<UserProps> = (props) => {
+const UserDetail = (props: UserProps) => {
 
   const [user, setUser] = useState<UserType>();
 

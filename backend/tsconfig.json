@@ -1,23 +1,23 @@
 {
   "compilerOptions": {
-      "outDir": "./built/",
-      "sourceMap": true,
-      "strict": true,
-      "noImplicitReturns": true,
-      "noImplicitAny": true,
-      "module": "es2015",
-      "jsx": "react",
-      "experimentalDecorators": true,
-      "emitDecoratorMetadata": true,
-      "moduleResolution": "node",
-      "target": "es6",
-      "lib": [
-          "es2016",
-          "dom"
-      ],
-      "allowSyntheticDefaultImports": true
+    "target": "es6",
+    "lib": [
+      "es2016",
+      "dom"
+    ],
+    "module": "es2015",
+    "outDir": "./built/",
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
   },
   "include": [
-      "resources/ts/**/*"
+    "resources/ts/**/*"
   ],
 }

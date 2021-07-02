@@ -34706,8 +34706,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _beginners_BackLink__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./beginners/BackLink */ "./resources/ts/components/beginners/BackLink.tsx");
 /* harmony import */ var _beginners_Top__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./beginners/Top */ "./resources/ts/components/beginners/Top.tsx");
 /* harmony import */ var _beginners_Sub__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./beginners/Sub */ "./resources/ts/components/beginners/Sub.tsx");
-/* harmony import */ var _beginners_Hooks__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./beginners/Hooks */ "./resources/ts/components/beginners/Hooks.js");
-/* harmony import */ var _beginners_Hooks__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_beginners_Hooks__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _beginners_Hooks__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./beginners/Hooks */ "./resources/ts/components/beginners/Hooks.tsx");
 
 
 
@@ -34759,7 +34758,7 @@ const App = () => {
             react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { path: "/basic/user/:id", component: _basic_UserDetail__WEBPACK_IMPORTED_MODULE_11__["default"] }),
             react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { path: "/beginners", exact: true, component: _beginners_Top__WEBPACK_IMPORTED_MODULE_14__["default"] }),
             react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { path: "/beginners/sub", component: _beginners_Sub__WEBPACK_IMPORTED_MODULE_15__["default"] }),
-            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { path: "/beginners/hooks", exact: true, component: _beginners_Hooks__WEBPACK_IMPORTED_MODULE_16___default.a }),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { path: "/beginners/hooks", exact: true, component: _beginners_Hooks__WEBPACK_IMPORTED_MODULE_16__["default"] }),
             react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], { component: _NotFound__WEBPACK_IMPORTED_MODULE_5__["default"] })),
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null),
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null,
@@ -35059,14 +35058,217 @@ const BackLink = () => {
 
 /***/ }),
 
-/***/ "./resources/ts/components/beginners/Hooks.js":
-/*!****************************************************!*\
-  !*** ./resources/ts/components/beginners/Hooks.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./resources/ts/components/beginners/Hooks.tsx":
+/*!*****************************************************!*\
+  !*** ./resources/ts/components/beginners/Hooks.tsx ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/work/backend/resources/ts/components/beginners/Hooks.js'");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const Count = () => {
+    const [count, setCount] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0);
+    const [count2, setCount2] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0);
+    const [count3, setCount3] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0);
+    react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(() => {
+        console.info(`You clicked ${count} times`);
+        console.info(`You clicked2 ${count2} times`);
+    }, [count, count2]);
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null,
+            "Count: ",
+            count),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", { onClick: () => setCount(prevCount => prevCount + 1) }, "click"),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null,
+            "Count2: ",
+            count2),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", { onClick: () => setCount2(prevCount => prevCount + 1) }, "click"),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null,
+            "Count3: ",
+            count3),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", { onClick: () => setCount3(prevCount => prevCount + 1) }, "click")));
+};
+const CountDown = () => {
+    const [visible, setVisible] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(true);
+    const LIMIT = 60;
+    const Timer = () => {
+        const [timeLeft, setTimeLeft] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(LIMIT);
+        const reset = () => {
+            setTimeLeft(LIMIT);
+        };
+        const tick = () => {
+            console.log('tick');
+            setTimeLeft(prevTime => prevTime === 0 ? LIMIT : prevTime - 1);
+        };
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(() => {
+            console.log('create Timer');
+            const timerId = setInterval(tick, 1000);
+            return () => {
+                console.log('cleanup Timer');
+                clearInterval(timerId);
+            };
+        }, []);
+        return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null,
+                "time: ",
+                timeLeft),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", { onClick: reset }, "reset")));
+    };
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", { onClick: () => setVisible(!visible) }, "toggle Timer"),
+        visible ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Timer, null) : ''));
+};
+const UseMemo = () => {
+    const [count1, setCount1] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0);
+    const [count2, setCount2] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0);
+    // 無駄に時間がかかる処理
+    const double = (count) => {
+        let i = 0;
+        while (i < 1000000000) {
+            i++;
+        }
+        return count * 2;
+    };
+    // メモ化された値を再利用する方法
+    const doubleCount = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => {
+        double(count1);
+    }, [count1]);
+    // // 再利用しない方法
+    // const doubleCount = double(count1);
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null,
+            "Count1: ",
+            count1),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null,
+            "DoubleCount: ",
+            doubleCount),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", { onClick: () => setCount1(count1 + 1) }, "increment1"),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null,
+            "Count2: ",
+            count2),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", { onClick: () => setCount2(count2 + 1) }, "increment2")));
+};
+const UseCallback = () => {
+    const [count1, setCount1] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0);
+    const [count2, setCount2] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0);
+    const Button = react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(function button({ id, handleOnClick }) {
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(() => {
+            console.log(`render ${id}`);
+        });
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", { onClick: handleOnClick }, id);
+    });
+    const increment1 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useCallback(() => {
+        setCount1(count1 + 1);
+    }, [count1]);
+    const increment2 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useCallback(() => {
+        setCount2(count => count + 1);
+    }, []);
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, count1),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Button, { id: 'increment1', handleOnClick: increment1 }),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, count2),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Button, { id: 'increment2', handleOnClick: increment2 })));
+};
+const MyContext = react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext(undefined);
+const UseContext = () => {
+    const [count, setCount] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0);
+    const val = {
+        name: 'soarflat',
+        handleOnClick: () => setCount(count => count + 1),
+    };
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null,
+            "count: ",
+            count),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MyContext.Provider, { value: val },
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ChildComponent, null))));
+};
+const ChildComponent = () => {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(GrandChildComponent, null);
+};
+const GrandChildComponent = () => {
+    const context = react__WEBPACK_IMPORTED_MODULE_0___default.a.useContext(MyContext);
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, context.name),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", { onClick: context.handleClick }, "increment")));
+};
+const UseRef = () => {
+    const inputEl = react__WEBPACK_IMPORTED_MODULE_0___default.a.useRef(null);
+    const handleOnClick = () => {
+        if (inputEl === null || !inputEl.current)
+            return;
+        inputEl.current.focus();
+    };
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", { ref: inputEl, type: "text" }),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", { onClick: handleOnClick }, "input\u8981\u7D20\u306B\u30D5\u30A9\u30FC\u30AB\u30B9\u79FB\u52D5")));
+};
+const UseRef2 = () => {
+    const [count, setCount] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0);
+    const prevCountRef = react__WEBPACK_IMPORTED_MODULE_0___default.a.useRef(0);
+    Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+        prevCountRef.current = count;
+    });
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null,
+            "count: ",
+            count,
+            ", before: ",
+            prevCountRef.current),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", { onClick: () => setCount(count + 1) }, "increment")));
+};
+/**
+ * カスタムフック
+ */
+const useCounter = (initialCounter) => {
+    const [count, setCount] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(initialCounter);
+    const increment = () => {
+        setCount(count + 1);
+    };
+    const decrement = () => {
+        setCount(count - 1);
+    };
+    return { count, increment, decrement };
+};
+const UseCustomHook = () => {
+    const counter = useCounter(0);
+    const counter10 = useCounter(10);
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null,
+            "counter: ",
+            counter.count),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", { onClick: counter.decrement }, "-"),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", { onClick: counter.increment }, "+"),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null,
+            "counter10: ",
+            counter10.count),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", { onClick: counter10.decrement }, "-"),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", { onClick: counter10.increment }, "+")));
+};
+const Hooks = () => {
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null,
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Count, null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CountDown, null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(UseMemo, null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(UseCallback, null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(UseContext, null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(UseRef, null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(UseRef2, null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(UseCustomHook, null)));
+};
+/* harmony default export */ __webpack_exports__["default"] = (Hooks);
+
 
 /***/ }),
 
